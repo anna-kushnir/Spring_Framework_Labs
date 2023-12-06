@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body data-bs-theme="dark" id="body">
+<div th:insert="~{base.html :: header}">
+</div>
+
+<div class="container rounded border border-2" id="form">
+    <form action="/currency" method="post">
+        <div class="mb-3">
+            <label for="input" class="form-label">Currency code</label>
+            <input type="text" class="form-control" id="input" aria-describedby="inputHelp">
+            <div id="inputHelp" class="form-text">Enter ISO code, examples: USD, EUR, JPY</div>
+        </div>
+        <button class="btn btn-primary mb-3" type="submit" id="submitButton">Add currency</button>
+    </form>
+</div>
+<div id="resultDiv" class="container fs-1"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/addCurrency.js}"></script>
+</body>
+</html>
