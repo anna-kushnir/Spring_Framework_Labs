@@ -1,9 +1,7 @@
 package com.ip12.currencycrafter.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,6 +9,8 @@ import java.time.LocalDate;
 @Entity(name = "EXCHANGE_RATE")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "EXCHANGE_RATE", schema = "CURRENCY_SCHEMA")
 public class ExchangeRate {
@@ -26,7 +26,9 @@ public class ExchangeRate {
     @Column(name = "RATE")
     private BigDecimal rate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    //TODO: add custom join @Query
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CURRENCY_ID")
     private Currency currency;
 }

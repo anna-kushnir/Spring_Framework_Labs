@@ -4,7 +4,7 @@ const deleteButtons = document.getElementsByClassName("delete-button");
 
 
 // URL where you want to send the request
-const url = "/currency/";
+const url = "/currencies/";
 
 body.addEventListener("click", (event) => {
     console.log("click")

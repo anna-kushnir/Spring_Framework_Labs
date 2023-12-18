@@ -9,23 +9,45 @@
     <div class="container my-2">
         <div class="row justify-content-start">
             <div class="col-2">
-                <a href="/currency/today"
+                <a href="/currencies/today"
                    class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">
                     Main(today)
                 </a>
             </div>
             <div class="col-2">
-                <a href="/currency"
+                <a href="/currencies"
                    class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">All
                     Currencies</a>
             </div>
             <div class="col justify-content-end text-end">
-                <a href="/currency"
-                   class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Login</a>
+                <span id="UAH-span"></span>
             </div>
         </div>
 
     </div>
+    <script>
+
+        const spanEl = document.getElementById("UAH-span");
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch("/api/v1/currencies/today/uah", {
+                method: "GET", // You can change this to "GET" or other HTTP methods
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return new Error("not found");
+                    }
+                })
+                .then((data) => {
+                    spanEl.textContent = "UAH/USD: " + data.rate;
+                })
+                .catch(e => {
+                    spanEl.textContent = "UAH/USD: not found";
+                })
+        });
+    </script>
 </header>
+
 </body>
 </html>

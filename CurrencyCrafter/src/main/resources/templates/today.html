@@ -9,8 +9,6 @@
 <body data-bs-theme="dark">
 <div th:insert="~{base.html :: header}">
 </div>
-<p class="fs-1 text-center" th:unless="${exchangeRates.isEmpty()}"
-   th:text="'Today('+ ${exchangeRates.get(0).getLocalDate()} + ') currencies exchange rates'"></p>
 <div class="container rounded border border-2">
     <table class="text-center table table-hover">
         <thead>
@@ -20,12 +18,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${exchangeRates.isEmpty()}">
-            <td colspan="2"> No rates Available</td>
-        </tr>
-        <tr th:each="exchangeRate : ${exchangeRates}">
-            <td><span th:text="${exchangeRate.currency.name}"> id </span></td>
-            <td><span th:text="${exchangeRate.rate}"> name </span></td>
+        <tr th:each="currency : ${currencies}">
+            <td><span th:text="${currency.name}"> name </span></td>
+            <td th:if="${currency.getExchangeRates().size() == 0}"><span> Not available </span></td>
+            <td th:unless="${currency.getExchangeRates().size() == 0}"><span
+                    th:text="${currency.getExchangeRates().get(0).rate}"> Not available </span></td>
         </tr>
         </tbody>
     </table>

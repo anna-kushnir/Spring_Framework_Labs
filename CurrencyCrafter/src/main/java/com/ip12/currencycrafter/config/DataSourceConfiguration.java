@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 public class DataSourceConfiguration {
     private static final String DATASOURCE_PREFIX = "spring.datasource.";
 
-
     @Bean
     @Primary
     public DataSource dataSource(Environment environment) {

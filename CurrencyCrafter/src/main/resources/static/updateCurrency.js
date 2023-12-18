@@ -3,13 +3,14 @@ const body = document.getElementById("body");
 const submitButton = document.getElementById("submitButton");
 const form = document.getElementById("form");
 const div = document.getElementById("resultDiv");
+const currentUrl = window.location.href;
+const match = currentUrl.match(/\/currencies\/(\d+)\/edit/);
+const currencyId = match[1];
+
 
 // URL where you want to send the request
-const url = "/currency";
-const queryString = window.location.search;
-// Use URLSearchParams to parse the query string
-const currencyId = new URLSearchParams(queryString).get("currencyId");
-console.log(currencyId)
+const url = "/currencies/" + currencyId;
+
 body.addEventListener("click", (event) => {
     if (submitButton.contains(event.target)) {
 
@@ -34,7 +35,7 @@ body.addEventListener("click", (event) => {
                     throw new Error(response.text());
                 }
             })
-            .then(data => {
+            .then(() => {
                 // Handle the response data here
                 form.remove();
                 div.innerHTML = "Done";
